@@ -15,7 +15,7 @@ LIGHT_RED = (255,100,100)
 
 # Grid constants & initializing the grid
 ROWS = 80
-COLS = 150
+COLS = 160
 TILE_WIDTH = 4
 TILE_HEIGHT = 4
 MARGIN_SIZE = 1
@@ -34,58 +34,82 @@ pygame.display.set_caption("Game of Life +")
 
 HEADER_FONT = pygame.font.SysFont("Tahoma",30)
 TITLE_TEXT = HEADER_FONT.render("GAME OF LIFE +", True, WHITE)
-TITLE_X = 840
+TITLE_X = 920
 TITLE_Y = 30
+
 
 BUTTON_FONT = pygame.font.SysFont("Tahoma",15)
 # Clear grid button
 CLEAR_GRID_TEXT = BUTTON_FONT.render("Clear Grid", True, BLACK)
-CLEAR_GRID_X = 840
+CLEAR_GRID_X = 920
 CLEAR_GRID_Y = 80
 CLEAR_GRID_WIDTH = 220
 CLEAR_GRID_HEIGHT = 20
 
+
 # NOT gate button (0)
 NOT_0_TEXT = BUTTON_FONT.render("Create a NOT Gate (0)", True, BLACK)
-NOT_0_X = 840
+NOT_0_X = 920
 NOT_0_Y = 130
 NOT_0_WIDTH = 220
 NOT_0_HEIGHT = 20
-
 # NOT gate button (1)
 NOT_1_TEXT = BUTTON_FONT.render("Create a NOT Gate with (1)", True, BLACK)
-NOT_1_X = 840
+NOT_1_X = 920
 NOT_1_Y = 160
 NOT_1_WIDTH = 220
 NOT_1_HEIGHT = 20
 
+
 # AND gate button (00)
 AND_00_TEXT = BUTTON_FONT.render("Create an AND Gate with (00)", True, BLACK)
-AND_00_X = 840
+AND_00_X = 920
 AND_00_Y = 210
 AND_00_WIDTH = 220
 AND_00_HEIGHT = 20
-
 # AND gate button (01)
 AND_01_TEXT = BUTTON_FONT.render("Create an AND Gate with (01)", True, BLACK)
-AND_01_X = 840
+AND_01_X = 920
 AND_01_Y = 240
 AND_01_WIDTH = 220
 AND_01_HEIGHT = 20
-
 # AND gate button (10)
 AND_10_TEXT = BUTTON_FONT.render("Create an AND Gate with (10)", True, BLACK)
-AND_10_X = 840
+AND_10_X = 920
 AND_10_Y = 270
 AND_10_WIDTH = 220
 AND_10_HEIGHT = 20
-
 # AND gate button (11)
 AND_11_TEXT = BUTTON_FONT.render("Create an AND Gate with (11)", True, BLACK)
-AND_11_X = 840
+AND_11_X = 920
 AND_11_Y = 300
 AND_11_WIDTH = 220
 AND_11_HEIGHT = 20
+
+# OR gate button (00)
+OR_00_TEXT = BUTTON_FONT.render("Create an OR Gate with (00)", True, BLACK)
+OR_00_X = 920
+OR_00_Y = 350
+OR_00_WIDTH = 220
+OR_00_HEIGHT = 20
+# OR gate button (01)
+OR_01_TEXT = BUTTON_FONT.render("Create an OR Gate with (01)", True, BLACK)
+OR_01_X = 920
+OR_01_Y = 380
+OR_01_WIDTH = 220
+OR_01_HEIGHT = 20
+# OR gate button (10)
+OR_10_TEXT = BUTTON_FONT.render("Create an OR Gate with (10)", True, BLACK)
+OR_10_X = 920
+OR_10_Y = 410
+OR_10_WIDTH = 220
+OR_10_HEIGHT = 20
+# OR gate button (11)
+OR_11_TEXT = BUTTON_FONT.render("Create an OR Gate with (11)", True, BLACK)
+OR_11_X = 920
+OR_11_Y = 440
+OR_11_WIDTH = 220
+OR_11_HEIGHT = 20
 
 
 
@@ -125,6 +149,15 @@ while not done:
                 gol.spawnANDGate(False,True)
             if x >= AND_11_X and x <= AND_11_X + AND_11_WIDTH and y >= AND_11_Y and y <= AND_11_Y + AND_11_HEIGHT:
                 gol.spawnANDGate(True,True)
+            
+            if x >= OR_00_X and x <= OR_00_X + OR_00_WIDTH and y >= OR_00_Y and y <= OR_00_Y + OR_00_HEIGHT:
+                gol.spawnORGate(False,False)     
+            if x >= OR_01_X and x <= OR_01_X + OR_01_WIDTH and y >= OR_01_Y and y <= OR_01_Y + OR_01_HEIGHT:
+                gol.spawnORGate(True,False)
+            if x >= OR_10_X and x <= OR_10_X + OR_10_WIDTH and y >= OR_10_Y and y <= OR_10_Y + OR_10_HEIGHT:
+                gol.spawnORGate(False,True)
+            if x >= OR_11_X and x <= OR_11_X + OR_11_WIDTH and y >= OR_11_Y and y <= OR_11_Y + OR_11_HEIGHT:
+                gol.spawnORGate(True,True)
 
       
             # Set that location to one
@@ -154,8 +187,8 @@ while not done:
                 color = RED
             pygame.draw.rect(screen,
                              color,
-                             [(MARGIN_SIZE + TILE_WIDTH) * column + MARGIN_SIZE,
-                              (MARGIN_SIZE + TILE_HEIGHT) * row + MARGIN_SIZE,
+                             [(MARGIN_SIZE + TILE_WIDTH) * column + MARGIN_SIZE+50,
+                              (MARGIN_SIZE + TILE_HEIGHT) * row + MARGIN_SIZE+100,
                               TILE_WIDTH,
                               TILE_HEIGHT])
 
@@ -207,8 +240,26 @@ while not done:
     screen.blit(AND_11_TEXT,(AND_11_X,AND_11_Y))
     
     
-
-    
+    if x >= OR_00_X and x <= OR_00_X + OR_00_WIDTH and y >= OR_00_Y and y <= OR_00_Y + OR_00_HEIGHT:
+        pygame.draw.rect(screen,LIGHT_RED,(OR_00_X,OR_00_Y,OR_00_WIDTH,OR_00_HEIGHT))
+    else:
+        pygame.draw.rect(screen,RED,(OR_00_X,OR_00_Y,OR_00_WIDTH,OR_00_HEIGHT))
+    screen.blit(OR_00_TEXT,(OR_00_X,OR_00_Y))
+    if x >= OR_01_X and x <= OR_01_X + OR_01_WIDTH and y >= OR_01_Y and y <= OR_01_Y + OR_01_HEIGHT:
+        pygame.draw.rect(screen,LIGHT_RED,(OR_01_X,OR_01_Y,OR_01_WIDTH,OR_01_HEIGHT))
+    else:
+        pygame.draw.rect(screen,RED,(OR_01_X,OR_01_Y,OR_01_WIDTH,OR_01_HEIGHT))
+    screen.blit(OR_01_TEXT,(OR_01_X,OR_01_Y))
+    if x >= OR_10_X and x <= OR_10_X + OR_10_WIDTH and y >= OR_10_Y and y <= OR_10_Y + OR_10_HEIGHT:
+        pygame.draw.rect(screen,LIGHT_RED,(OR_10_X,OR_10_Y,OR_10_WIDTH,OR_10_HEIGHT))
+    else:
+        pygame.draw.rect(screen,RED,(OR_10_X,OR_10_Y,OR_10_WIDTH,OR_10_HEIGHT))
+    screen.blit(OR_10_TEXT,(OR_10_X,OR_10_Y))
+    if x >= OR_11_X and x <= OR_11_X + OR_11_WIDTH and y >=OR_11_Y and y <= OR_11_Y + OR_11_HEIGHT:
+        pygame.draw.rect(screen,LIGHT_RED,(OR_11_X,OR_11_Y,OR_11_WIDTH,OR_11_HEIGHT))
+    else:
+        pygame.draw.rect(screen,RED,(OR_11_X,OR_11_Y,OR_11_WIDTH,OR_11_HEIGHT))
+    screen.blit(OR_11_TEXT,(OR_11_X,OR_11_Y))
     
     # Go ahead and update the screen with what we've drawn.
     pygame.display.flip()

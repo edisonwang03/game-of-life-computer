@@ -116,7 +116,7 @@ class gameoflifegrid():
         for [x,y] in toSpawn:
             self.grid[x,y] = 1
 
-    def spawnOr00(self,r,c):
+    def spawnOr00(self):
         toSpawn = [[13, 66], [14, 66], [13, 67], [15, 67], [15, 68], [15, 69], [16, 69], [13, 106], [14, 106], [13, 107], [15, 107], [15, 108], [15, 109], [16, 109]]
         for [x,y] in toSpawn:
             self.grid[x,y] = 1
@@ -143,98 +143,19 @@ class gameoflifegrid():
             self.stopperAnd01()
         if prop1 and not prop2:
             self.stopperAnd10()
-            
     
-            
-     
-    '''
-    def makeGliderGun(self,x,y,orientation):
-        # Requires 9 X 36 grid or 36 X 9 grid, depending on orientation
-        if orientation == "NW": 
-            self.grid[x+4][y] = 1
-            self.grid[x+4][y+1] = 1
-            self.grid[x+5][y] = 1
-            self.grid[x+5][y+1] = 1
-            self.grid[x+2][y+12] = 1
-            self.grid[x+2][y+13] = 1
-            self.grid[x+3][y+11] = 1
-            self.grid[x+4][y+10] = 1
-            self.grid[x+5][y+10] = 1
-            self.grid[x+6][y+10] = 1
-            self.grid[x+7][y+11] = 1
-            self.grid[x+8][y+12] = 1
-            self.grid[x+8][y+13] = 1
-            self.grid[x+5][y+14] = 1
-            self.grid[x+3][y+15] = 1
-            self.grid[x+4][y+16] = 1
-            self.grid[x+5][y+16] = 1
-            self.grid[x+5][y+17] = 1
-            self.grid[x+6][y+16] = 1
-            self.grid[x+7][y+15] = 1
-            self.grid[x+4][y+21] = 1
-            self.grid[x+3][y+21] = 1
-            self.grid[x+2][y+21] = 1
-            self.grid[x+4][y+20] = 1
-            self.grid[x+3][y+20] = 1
-            self.grid[x+2][y+20] = 1
-            self.grid[x+1][y+22] = 1
-            self.grid[x+5][y+22] = 1
-            self.grid[x+5][y+24] = 1
-            self.grid[x+6][y+24] = 1
-            self.grid[x+5][y+24] = 1
-            self.grid[x][y+24] = 1
-            self.grid[x+1][y+24] = 1
-            self.grid[x+2][y+34] = 1
-            self.grid[x+3][y+34] = 1
-            self.grid[x+2][y+35] = 1
-            self.grid[x+3][y+35] = 1
-        elif orientation == "SW":
-            self.grid[x][y+2] = 1
-            self.grid[x][y+3] = 1
-            self.grid[x+1][y+2] = 1
-            self.grid[x+1][y+3] = 1
-            self.grid[x+11][y] = 1
-            self.grid[x+11][y+1] = 1
-            self.grid[x+11][y+5] = 1
-            self.grid[x+11][y+6] = 1
-            self.grid[x+13][y+5] = 1
-            self.grid[x+14][y+4] = 1
-            self.grid[x+15][y+4] = 1
-            self.grid[x+15][y+3] = 1
-            self.grid[x+14][y+3] = 1
-            self.grid[x+15][y+2] = 1
-            self.grid[x+14][y+2] = 1
-            self.grid[x+13][y+1] = 1
-            self.grid[x+18][y+5] = 1
-            self.grid[x+19][y+5] = 1
-            self.grid[x+19][y+4] = 1
-            self.grid[x+19][y+6] = 1
-            self.grid[x+20][y+7] = 1
-            self.grid[x+20][y+3] = 1
-            self.grid[x+35][y+5] = 1
-            self.grid[x+21][y+5] = 1
-            self.grid[x+22][y+2] = 1
-            self.grid[x+23][y+2] = 1
-            self.grid[x+24][y+3] = 1
-            self.grid[x+25][y+4] = 1
-            self.grid[x+25][y+5] = 1
-            self.grid[x+25][y+6] = 1
-            self.grid[x+24][y+7] = 1
-            self.grid[x+23][y+8] = 1
-            self.grid[x+22][y+8] = 1
-            self.grid[x+34][y+4] = 1
-            self.grid[x+35][y+4] = 1
-            self.grid[x+34][y+5] = 1
-    
-    
-    def makeNOTGateWithInput(self):
-        self.clearGrid()           
-        self.makeGliderGun(0,40,"NW")
-        self.makeGliderGun(40,40,"SW")
-        
-        
-    def makeNOTGateWithoutInput(self):
+    def spawnORGate(self,prop1,prop2):
         self.clearGrid()
-        self.makeGliderGun(40,0,"SW")
-'''
+        self.spawnGlider(1,0)
+        self.spawnGlider(1,40)
+        self.spawnGlider(1,80)
+        self.spawnReverseGlider(3,120)
+        self.spawnStopperOr()
+        self.spawnEaterOr()
+        if not prop1 and not prop2:
+            self.spawnOr00()
+        if not prop1 and prop2:
+            self.spawnOr01()
+        if prop1 and not prop2:
+            self.spawnOr10()
         
