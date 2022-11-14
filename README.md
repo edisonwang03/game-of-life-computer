@@ -1,4 +1,4 @@
-# GameOfLifePlus
+# Game Of Life +
 
 A program that creates logic gates using Conway's Game of Life. Conway's Game of Life is a cellular automaton where a grid of alive and dead cells are governed by
 3 simple rules:
