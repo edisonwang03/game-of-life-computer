@@ -1,7 +1,8 @@
-# Game Of Life +
+# Game Of Life Computer
 
-A program that creates logic gates using Conway's Game of Life. Conway's Game of Life is a cellular automaton where a grid of alive and dead cells are governed by
-3 simple rules:
+Innovated on a replica of the cellular automaton, Conway’s Game of Life, by simulating basic logic gates. Utilized Pygame to create a basic GUI to apply game rules and automatically draw all logic gates
+
+Conway's Game of Life is played on a grid of alive/dead cells governed by 3 rules.
 
 1) Each cell with one or no neighbors dies, as if by solitude
 2) Each cell with four or more neighbors dies, as if by overpopulation
